@@ -55,7 +55,7 @@ def download(message):
 		print(e,"Connection Error") 
 		bot.send_message(chat_id=chat_id,text="Sorry I can't recognize you , you said '%s'" % message.text) 
 
-bot.infinity_polling()
+
 
 
 @server.route('/' + TOKEN, methods=['POST'])

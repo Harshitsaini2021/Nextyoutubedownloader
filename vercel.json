@@ -3,6 +3,7 @@
   "builds": [
       {
           "src": "*.py",
+          "use": "@liudonghua123/now-flask"
       }
   ],
   "routes": [

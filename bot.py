@@ -8,7 +8,7 @@ from flask import Flask,request
 import os
 
 
-TOKEN = "5169425026:AAFQ6gYDv1jtus96UGfbwko5vl2mt1mo_aA"
+TOKEN = "5169425026:AAHAosbSQ36rHwjqyjUigefoWejFmvQyRro"
 
 bot = telebot.TeleBot(token=TOKEN, parse_mode=None)
 

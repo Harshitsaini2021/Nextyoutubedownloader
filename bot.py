@@ -49,7 +49,7 @@ def download(message):
 	    for i in stream:
 	    	videos[i.itag]=str(str(i.mime_type).split('/')[1]+','+','+ i.resolution+','+ str(round(i.filesize_approx/1048576,2))+'MB') 
 	    
-	    bot.send_message(chat_id=chat_id,reply_markup=makeMarkup(videos),parse_mode='HTML')
+	    bot.send_message(chat_id=chat_id,text="Downloaded 🙂",reply_markup=makeMarkup(videos),parse_mode='HTML')
 	except Exception as e:
 		print(e,"Connection Error") 
 		bot.send_message(chat_id=chat_id,text="Sorry I can't recognize you , you said '%s'" % message.text) 

@@ -32,7 +32,7 @@ def get(call):
 	#yt.streams.get_by_itag(itag=itag).download()
 	url = yt.streams.get_by_itag(itag=itag).url
 	data = urllib.request.urlopen(url).read()
-	bot.send_video(caption=yt.title, reply_to_message_id=call.message.chat.id, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=data,timeout=10000)
+	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=data,timeout=10000)
 	bot.edit_message_text(chat_id=call.message.chat.id,text='Download complete', message_id=call.message.message_id)
 	
 @bot.message_handler(func=lambda m: True)

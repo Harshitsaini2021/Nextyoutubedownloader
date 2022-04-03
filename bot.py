@@ -7,7 +7,7 @@ import urllib.request
 import os
 
 
-TOKEN = "5169425026:AAHAosbSQ36rHwjqyjUigefoWejFmvQyRro"
+TOKEN = os.environ.get('TOKEN')
 
 bot = telebot.TeleBot(token=TOKEN, parse_mode=None)
 

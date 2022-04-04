@@ -31,8 +31,7 @@ def get(call):
 	#yt.streams.get_by_itag(itag=itag).download()
 	url = yt.streams.get_by_itag(itag=itag).url
 	resp = urllib.request.urlopen(url)
-
-        length = yt.streams.get_by_itag(itag=itag).filesize
+	length = yt.streams.get_by_itag(itag=itag).filesize
 	if length:
 	    length = int(length)
 	    blocksize = max(4096, length//100)

@@ -29,31 +29,9 @@ def get(call):
 	itag = call.data
 	bot.edit_message_text(chat_id=call.message.chat.id,text='Yes, I am downloading file...', message_id=call.message.message_id)
 	#yt.streams.get_by_itag(itag=itag).download()
-	url = yt.streams.get_by_itag(itag=itag).url
-	resp = urllib.request.urlopen(url)
-	length = yt.streams.get_by_itag(itag=itag).filesize
-	if length:
-	    length = int(length)
-	    blocksize = max(4096, length//100)
-	else:
-	    blocksize = 1000000 # just made something up
-	
-	print(length, blocksize)
-	
-	buf = io.BytesIO()
-	size = 0
-	while True:
-	    buf1 = resp.read(blocksize)
-	    if not buf1:
-	        break
-	    buf.write(buf1)
-	    size += len(buf1)
-	    if length:
-                Percent = int((size / length)*100)
-                bot.edit_message_text(chat_id=call.message.chat.id,text=f"Download: {Percent}% ",message_id=call.message.message_id)
-	data = buf.getvalue()
+	url = yt.streams.get_by_itag(itag=itag).download()
 
-	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=data,timeout=10000)
+	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=url,timeout=10000)
 	bot.edit_message_text(chat_id=call.message.chat.id,text='Download complete', message_id=call.message.message_id)
 	
 @bot.message_handler(func=lambda m: True)

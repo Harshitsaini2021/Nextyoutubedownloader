@@ -3,6 +3,7 @@ from telebot import types
 from pytube import YouTube  
 from pytube.cli import on_progress
 import urllib.request
+from pytube import request
 
 import os,io
 

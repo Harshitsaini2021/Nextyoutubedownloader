@@ -11,6 +11,10 @@ TOKEN = os.environ.get('TOKEN')
 
 bot = telebot.TeleBot(token=TOKEN, parse_mode=None)
 
+def progress(chunk,fn, remaining):
+	total = len(chunk)+remaining
+	complete = len(chunk)
+	bot.edit_message_text(chat_id=chat_id,text=f'Download: {complete*100/total}%')
 
 def makeMarkup(arr):
 	markup = types.InlineKeyboardMarkup()
@@ -27,6 +31,8 @@ def start(message):
 @bot.callback_query_handler(func=lambda call:True)
 def get(call):
 	itag = call.data
+	global chat_id 
+	chat_id = call.message.chat.id
 	bot.edit_message_text(chat_id=call.message.chat.id,text='Yes, I am downloading file...', message_id=call.message.message_id)
 	#yt.streams.get_by_itag(itag=itag).download()
 	url = yt.streams.get_by_itag(itag=itag).download()

@@ -1,9 +1,9 @@
 import telebot
 from telebot import types
-from pytube import YouTube  
+from pytube import YouTube 
+from pytube import request 
 from pytube.cli import on_progress
 import urllib.request
-from pytube import request
 
 import os,io
 
@@ -36,12 +36,13 @@ def get(call):
 	url = stream.url
 	bytes_remaining = int(stream.filesize)
 	for chunk in request.stream(url):
+	   	data += chunk
 	   	bytes_remaining -= len(chunk)
 	   	total = yt.streams.get_by_itag(itag=itag).filesize
 	   	complete = total - bytes_remaining
 	   	bot.edit_message_text(chat_id=chat_id,text=f'Download: {complete*100/total}%',message_id=call.message.message_id)
 		
-	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=chunk,timeout=10000)
+	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=data,timeout=10000)
 		
 	bot.edit_message_text(chat_id=call.message.chat.id,text='Download complete', message_id=call.message.message_id)
 	

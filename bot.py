@@ -34,6 +34,7 @@ def get(call):
 	stream = yt.streams.get_by_itag(itag=itag)
 
 	url = stream.url
+	data = bytes()
 	bytes_remaining = int(stream.filesize)
 	for chunk in request.stream(url):
 	   	data += chunk

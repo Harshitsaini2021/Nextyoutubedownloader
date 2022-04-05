@@ -50,7 +50,7 @@ def download(message):
 	link = message.text
 	try:
 	    global yt
-	    yt = YouTube(link,on_progress_callback=progress)  
+	    yt = YouTube(link)  
 	    print('Downloading...')
 	    bot.send_message(chat_id=chat_id,text=f'Okk, I am downloading "{yt.title}" on my server')
 	    stream = yt.streams.filter(type='video',progressive=True).order_by('resolution')

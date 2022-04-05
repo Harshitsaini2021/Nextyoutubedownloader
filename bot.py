@@ -14,7 +14,7 @@ bot = telebot.TeleBot(token=TOKEN, parse_mode=None)
 def progress(chunk,fn, remaining):
 	total = yt.streams.get_by_itag(itag=itag).filesize
 	complete = total-remaining
-	bot.edit_message_text(chat_id=chat_id1,text=f'Download: {complete*100/total}%')
+	print(f'Download: {complete*100/total}%')
 
 def makeMarkup(arr):
 	markup = types.InlineKeyboardMarkup()

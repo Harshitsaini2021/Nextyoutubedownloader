@@ -38,7 +38,7 @@ def get(call):
 	for chunk in request.stream(url):
 	   	bytes_remaining -= len(chunk)
 	   	total = yt.streams.get_by_itag(itag=itag).filesize
-	   	complete = total-remaining
+	   	complete = total - bytes_remaining
 	   	bot.edit_message_text(chat_id=chat_id,text=f'Download: {complete*100/total}%',message_id=call.message.message_id)
 		
 	bot.send_video(caption=yt.title, thumb=yt.thumbnail_url, chat_id=call.message.chat.id,video=chunk,timeout=10000)
